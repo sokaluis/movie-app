@@ -1,10 +1,15 @@
 import React from 'react';
-
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
+import { Movie } from '../interfaces/movieDB';
 
-const Stack = createStackNavigator();
+export type RootStackParams = {
+  Home: undefined;
+  Details: Movie;
+};
+
+const Stack = createStackNavigator<RootStackParams>();
 
 const Navigation = () => {
   return (
@@ -16,7 +21,7 @@ const Navigation = () => {
         },
       }}>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Notifications" component={DetailsScreen} />
+      <Stack.Screen name="Details" component={DetailsScreen} />
     </Stack.Navigator>
   );
 };
