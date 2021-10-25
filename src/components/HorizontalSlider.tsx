@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     height: 210,
   },
   sliderTitle: {
+    color: 'black',
     fontSize: 30,
     fontWeight: 'bold',
     marginLeft: 10,
