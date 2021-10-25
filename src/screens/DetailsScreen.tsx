@@ -31,7 +31,7 @@ const DetailsScreen = ({ route }: DetailsScreenProps) => {
         <Text style={styles.subtitle}>{title}</Text>
       </View>
       <View style={styles.marginContainer}>
-        <Icon name="rocket" size={30} color="#900" />
+        <Icon name="star" size={30} color="grey" />
       </View>
     </ScrollView>
   );
