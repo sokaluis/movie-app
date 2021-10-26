@@ -9,8 +9,8 @@ interface GradientContextProps {
   handlePrevColors: (colors: ImageColorsProps) => void;
 }
 interface ImageColorsProps {
-  primary: string | undefined;
-  secondary: string | undefined;
+  primary: string | number;
+  secondary: string | number;
 }
 
 export const GradientContext = createContext({} as GradientContextProps);

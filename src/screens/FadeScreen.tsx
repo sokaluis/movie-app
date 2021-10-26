@@ -7,8 +7,8 @@ export const FadeScreen = () => {
   return (
     <View style={styles.animatedContainer}>
       <Animated.View style={[styles.animatedView, { opacity: opacity }]} />
-      <Button title="FadeIn" onPress={fadeIn} />
-      <Button title="FadeOut" onPress={fadeOut} />
+      <Button title="FadeIn" onPress={() => fadeIn()} />
+      <Button title="FadeOut" onPress={() => fadeOut()} />
     </View>
   );
 };
