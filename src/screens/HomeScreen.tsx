@@ -8,12 +8,24 @@ import { Movie } from '../interfaces/movieDB';
 import { ScrollView } from 'react-native-gesture-handler';
 import { HorizontalSlider } from '../components/HorizontalSlider';
 import { GradientBackground } from '../components/GradientBackground';
+import { getImageColors } from '../helpers/getColors';
 
 const { width: windowWidth } = Dimensions.get('window');
 
 const HomeScreen = () => {
   const { nowPlaying, popular, upcoming, topRated, isLoading } = useMovies();
   const { top: marginTop } = useSafeAreaInsets();
+  // const [bgcolor, setBgcolor] = useState({});
+
+  const getPosterColor = async (index: number) => {
+    const movie = nowPlaying[index];
+    const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+    const { primary, secondary } = await getImageColors(uri);
+
+    console.log('colors', primary);
+    console.log('colors', secondary);
+  };
 
   if (isLoading) {
     return (
@@ -36,6 +48,7 @@ const HomeScreen = () => {
               sliderWidth={windowWidth}
               itemWidth={300}
               inactiveSlideOpacity={0.9}
+              onSnapToItem={item => getPosterColor(item)}
             />
           </View>
           {/* Peliculas populares */}
