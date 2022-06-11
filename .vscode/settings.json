@@ -1,0 +1,6 @@
+{
+  "search.exclude": {
+    "**/nade_modules": true,
+    "**/node_modules": false
+  }
+}
