@@ -10,7 +10,11 @@ interface MoviePosterProps {
 
 export const HorizontalSlider = ({ title, movies }: MoviePosterProps) => {
   return (
-    <View style={styles.section}>
+    <View
+      style={{
+        ...styles.section,
+        height: title ? styles.section.height : styles.section.height - 40,
+      }}>
       {!!title && <Text style={styles.sectionHeader}>{title}</Text>}
       <FlatList
         data={movies}
@@ -32,5 +36,6 @@ const styles = StyleSheet.create({
   sectionHeader: {
     fontSize: 30,
     fontWeight: 'bold',
+    marginLeft: 10,
   },
 });
