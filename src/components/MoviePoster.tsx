@@ -36,7 +36,9 @@ export const MoviePoster = React.memo(
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 5,
+    marginHorizontal: 2,
+    paddingBottom: 20,
+    paddingHorizontal: 7,
   },
   imageContainer: {
     flex: 1,
