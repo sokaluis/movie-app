@@ -1,13 +1,17 @@
 import React from 'react';
-import { ActivityIndicator, Dimensions, StyleSheet, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  StyleSheet,
+  View,
+  ScrollView,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 // Core
 import { useMovies } from '../hooks/useMovies';
 // Components
-import { MoviePoster } from '../components/MoviePoster';
-import { ScrollView } from 'react-native-gesture-handler';
-import { HorizontalSlider } from '../components/HorizontalSlider';
+import { HorizontalSlider, MoviePoster } from '../components';
 
 const { width: windowWith } = Dimensions.get('window');
 

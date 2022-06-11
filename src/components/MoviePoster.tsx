@@ -1,29 +1,35 @@
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 // Core
-import { Movie } from '../interfaces/movieInterfaces';
+import { Movie, RootStackParamList } from '../interfaces';
 
 interface MoviePosterProps {
   movie: Movie;
   height?: number;
   width?: number;
 }
+type screenProps = StackNavigationProp<RootStackParamList>;
 
 export const MoviePoster = React.memo(
   ({ movie, height = 420, width = 300 }: MoviePosterProps) => {
     const uri = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+    const navigation = useNavigation<screenProps>();
 
     return (
-      <View
+      <TouchableOpacity
+        activeOpacity={0.8}
         style={{
           ...styles.container,
           height,
           width,
-        }}>
+        }}
+        onPress={() => navigation.navigate('DetailScreen', movie)}>
         <View style={styles.imageContainer}>
           <Image source={{ uri }} style={styles.image} />
         </View>
-      </View>
+      </TouchableOpacity>
     );
   },
 );
