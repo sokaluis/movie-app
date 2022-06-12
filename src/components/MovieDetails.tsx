@@ -1,9 +1,16 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import currencyFormatter from 'currency-formatter';
 // Core
 import { Cast, MovieFull } from '../interfaces';
+import { CastItem } from './CastItem';
 
 interface MovieDetailsProps {
   isLoading: boolean;
@@ -37,6 +44,15 @@ export const MovieDetails = ({ isLoading, movie, cast }: MovieDetailsProps) => {
           <Text style={styles.description}>{cast[0].original_name}</Text>
           <Text style={styles.title}>Presupuesto</Text>
           <Text style={styles.description}>{budget}</Text>
+          <View style={styles.cast}>
+            <Text style={styles.title}>Actores</Text>
+            <FlatList
+              horizontal
+              data={cast}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({ item }) => <CastItem actor={item} />}
+            />
+          </View>
         </View>
       )}
     </View>
@@ -74,5 +90,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     color: '#000',
+    marginVertical: 10,
+  },
+  cast: {
+    marginBottom: 20,
   },
 });
