@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 // Core
 import { RootStackParamList } from '../interfaces/navigationInterfaces';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { useMovieDetails } from '../hooks/useMovieDetails';
+import { MovieDetails } from '../components/MovieDetails';
 
 type DetailScreenProps = StackScreenProps<RootStackParamList>;
 
@@ -18,6 +19,7 @@ const { height: windowHeight } = Dimensions.get('screen');
 
 const DetailScreen = ({ route }: DetailScreenProps) => {
   const movie = route.params;
+  const { cast, movieFull, isLoading } = useMovieDetails(movie?.id!);
   const uri = `https://image.tmdb.org/t/p/w500/${movie?.poster_path}`;
 
   return (
@@ -31,12 +33,7 @@ const DetailScreen = ({ route }: DetailScreenProps) => {
         <Text style={styles.subtitle}>{movie?.original_title}</Text>
         <Text style={styles.title}>{movie?.title}</Text>
       </View>
-      <View style={styles.infoContainer}>
-        <Icon name="star" size={20} color="#000" />
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.description}>{movie?.overview}</Text>
-      </View>
+      <MovieDetails cast={cast} movie={movieFull} isLoading={isLoading} />
     </ScrollView>
   );
 };
@@ -72,15 +69,21 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#000',
   },
   subtitle: {
     fontSize: 16,
     opacity: 0.8,
+    color: '#000',
+  },
+  loading: {
+    marginTop: 20,
   },
   description: {
     fontSize: 16,
     marginTop: 10,
     lineHeight: 24,
+    color: '#000',
   },
 });
 
